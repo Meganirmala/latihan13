@@ -20,11 +20,28 @@ if($error == 1){
     echo "Terjadi Kesalahan pada proses input data";
     exit();
 }
+//Mengambil Data File Upload
+$files = $_FILES['foto'];
+$path = "penyimpanan/";
+
+//Menangani File Upload
+if( !empty($files['name'])){
+    $filepath = $path. $files["name"];
+    $upload = move_uploaded_file($files["tmp_name"], $filepath);
+}
+else{
+    $filepath = "";
+    $upload = false;
+}
+//Menangani error saat mengupload namun tetap memberikan gambar default
+if( $upload == false){
+    $filepath = $path."default.jpg";
+}
 
 //Menyiapkan Query MySQL untuk dieksekusi
-$query = "INSERT INTO barang(id_barang, nama_barang, harga)
+$query = "INSERT INTO barang(id_barang, harga, nama_barang, foto)
 VALUES
-('{$id_barang}','{$nama_barang}','{$harga}');";
+('{$id_barang}','{$harga}','{$nama_barang}','{$filepath}');";
 
 //Mengeksekusi MySQL Query
 $insert = mysqli_query($mysqli, $query);

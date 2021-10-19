@@ -27,7 +27,12 @@
 
                 <div class="col col-8 p-4 bg-light">
 
-                    <form action="action.php" method="POST">
+                    <form action="action.php" method="POST" enctype="multipart/form-data">
+
+                         <div class="form-group mb-2">
+                            <label for="foto">Foto</label>
+                            <input name="foto" id="foto" class="form-control" type="file">
+                        </div>
 
                         <div class="form-group mb-2">
                             <label for="name">ID Barang</label>
@@ -35,7 +40,7 @@
                         </div>
 
                         <div class="form-group mb-2">
-                            <label for="name">Nama Lengkap</label>
+                            <label for="name">Nama Barang</label>
                             <input name="nama_barang" id="name" class="form-control" type="text" placeholder="Nama Barang" required>
                         </div>
                         <div class="form-group mb-2">

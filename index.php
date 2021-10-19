@@ -47,6 +47,7 @@ $result = mysqli_query($mysqli, $query);
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Foto</th>
                                 <th scope="col">ID Barang</th>
                                 <th scope="col">Nama Barang</th>
                                 <th scope="col">Harga</th>
@@ -57,9 +58,13 @@ $result = mysqli_query($mysqli, $query);
                             <?php
                             $i =1;
                             foreach($result as $barang) {
+                                if( is_null($barang['foto'])){
+                                    $barang['foto'] = "penyimpanan/default.jpg";
+                                }
                                 echo 
                                 '<tr>
                                     <th scope="row">' . $i++ .'</th>
+                                    <td><img src="' . $barang["foto"]. '"/></td>
                                     <td>' . $barang["id_barang"]. '</td>
                                     <td>' . $barang["nama_barang"] . '</td>
                                     <td>' . $barang["harga"] .'</td>
