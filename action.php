@@ -34,7 +34,7 @@ else{
     $upload = false;
 }
 //Menangani error saat mengupload namun tetap memberikan gambar default
-if( $upload == false){
+if( !$upload && $filepath == ''){
     $filepath = $path."default.jpg";
 }
 
@@ -47,7 +47,7 @@ VALUES
 $insert = mysqli_query($mysqli, $query);
 
 //Menangani  ketika error pada saat eksekusi query
-if( $insert == false ){
+if( $insert == 0 ){
     echo "Error dalam menambahkan data. <a href='index.php'>Kembali</a>";
 }else{
     header("Location: index.php");

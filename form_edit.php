@@ -14,6 +14,7 @@ $query = "SELECT * FROM barang  WHERE  id_barang ='{$id_barang}'";
 $result = mysqli_query($mysqli, $query);
 
 foreach( $result as $barang){
+    $foto = $barang["foto"];
     $id_barang = $barang["id_barang"];
     $nama_barang = $barang["nama_barang"];
     $harga = $barang["harga"];
@@ -50,7 +51,19 @@ foreach( $result as $barang){
 
                 <div class="col col-8 p-4 bg-light">
 
-                    <form action="action_edit.php" method="POST">
+                    <form action="action_edit.php" method="POST" enctype="multipart/form-data">
+
+                        <?php if(!is_null($foto) && !empty($foto)) :?>
+                        <div class="form-group mb-2">
+                            <img src="<?=$foto?>" class="preview">
+                            <a href="hapus_foto.php?id_barang=<?=$id_barang?>">Hapus Foto</a>
+                        </div>
+                        <?php endif; ?>
+
+                        <div class="form-group mb-2">
+                            <label for="foto">Foto</label>
+                            <input name="foto" id="foto" class="form-control" type="file">
+                        </div>
 
                         <div class="form-group mb-2">
                             <label for="id_barang">ID Barang</label>

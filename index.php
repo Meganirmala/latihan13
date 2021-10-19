@@ -58,7 +58,7 @@ $result = mysqli_query($mysqli, $query);
                             <?php
                             $i =1;
                             foreach($result as $barang) {
-                                if( is_null($barang['foto'])){
+                                if( is_null($barang['foto']) || empty($barang['foto']) ){
                                     $barang['foto'] = "penyimpanan/default.jpg";
                                 }
                                 echo 
